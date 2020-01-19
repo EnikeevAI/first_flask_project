@@ -1,0 +1,61 @@
+videos = {
+    0:  {"title": "Алгоритмы на Python 3. Лекция №1",                                               "video_link": "https://www.youtube.com/embed/KdZ4HF1SrFs"},
+    1:  {"title": "Алгоритмы на Python 3. Лекция №2",                                               "video_link": "https://www.youtube.com/embed/ZgSx3yH7sJI"},
+    2:  {"title": "Алгоритмы на Python 3. Лекция №3",                                               "video_link": "https://www.youtube.com/embed/b8m9uRMpKJk"},
+    3:  {"title": "Алгоритмы на Python 3. Лекция №4",                                               "video_link": "https://www.youtube.com/embed/DvsCUI5FNnI"},
+    4:  {"title": "Алгоритмы на Python 3. Лекция №5",                                               "video_link": "https://www.youtube.com/embed/3I6OjxoeSS8"},
+    5:  {"title": "Алгоритмы на Python 3. Лекция №6",                                               "video_link": "https://www.youtube.com/embed/NLq7nB9bV0M"},
+    6:  {"title": "Алгоритмы на Python 3. Лекция №7",                                               "video_link": "https://www.youtube.com/embed/0Bc8zLURY-c"},
+    7:  {"title": "Алгоритмы на Python 3. Лекция №8",                                               "video_link": "https://www.youtube.com/embed/2XFaK3bgT7w"},
+    8:  {"title": "Алгоритмы на Python 3. Лекция №9",                                               "video_link": "https://www.youtube.com/embed/qf82-r9hl2Y"},
+    9:  {"title": "Алгоритмы на Python 3. Лекция №10",                                              "video_link": "https://www.youtube.com/embed/EdhN_gEDfUM"},
+    10: {"title": "Алгоритмы на Python 3. Лекция №11",                                              "video_link": "https://www.youtube.com/embed/m4HOkVeN4Mo"},
+    11: {"title": "Алгоритмы на Python 3. Лекция №12",                                              "video_link": "https://www.youtube.com/embed/rEPggzaPoUw"},
+    12: {"title": "Алгоритмы на Python 3. Лекция №13",                                              "video_link": "https://www.youtube.com/embed/L4IU1bPKvHM"},
+    13: {"title": "Алгоритмы на Python 3. Лекция №14",                                              "video_link": "https://www.youtube.com/embed/I9YB4qrYGDc"},
+    14: {"title": "Уроки Python для начинающих | #1 - Программирование на Python",                  "video_link": "https://www.youtube.com/embed/n0xtO0x81cg"},
+    15: {"title": "Уроки Python для начинающих | #2 - Установка среды разработки",                  "video_link": "https://www.youtube.com/embed/_fDwlrrDkZc"},
+    16: {"title": "Уроки Python для начинающих | #3 - Первая программа (синтаксис)",                "video_link": "https://www.youtube.com/embed/Q7ccXmziG-I"},
+    17: {"title": "Уроки Python для начинающих | #4 - Переменные",                                  "video_link": "https://www.youtube.com/embed/j8AePyuLw38"},
+    18: {"title": "Уроки Python для начинающих | #5 - Условные операторы",                          "video_link": "https://www.youtube.com/embed/tCSD-zNVkO4"},
+    19: {"title": "Уроки Python для начинающих | #6 - Циклы For, While, а также операторы",         "video_link": "https://www.youtube.com/embed/6uSUQz3k_EM"},
+    20: {"title": "Уроки Python для начинающих | #7 - Списки (list)",                               "video_link": "https://www.youtube.com/embed/ol23jnhVAOY"},
+    21: {"title": "Уроки Python для начинающих | #8 - Индексы и срезы",                             "video_link": "https://www.youtube.com/embed/lFHwzZBweVg"},
+    22: {"title": "Уроки Python для начинающих | #9 - Кортежи (tuple)",                             "video_link": "https://www.youtube.com/embed/NgQzna6il2w"},
+    23: {"title": "Уроки Python для начинающих | #10 - Словари (dict), а также их методы",          "video_link": "https://www.youtube.com/embed/NaA2H25gxN4"},
+    24: {"title": "Уроки Python для начинающих | #11 - Множества (set и frozenset)",                "video_link": "https://www.youtube.com/embed/Q_AlNHNCXF4"},
+    25: {"title": "Уроки Python для начинающих | #12 - Функции (def, lambda, return)",              "video_link": "https://www.youtube.com/embed/-vvQ_-JGzrM"},
+    26: {"title": "Уроки Python для начинающих | #13 - Исключения (Конструкция try - except)",      "video_link": "https://www.youtube.com/embed/KTosYqzyLpU"},
+    27: {"title": "Уроки Python для начинающих | #14 - Работа с файлами",                           "video_link": "https://www.youtube.com/embed/ypoE3bD2xbI"},
+    28: {"title": "Уроки Python для начинающих | #15 - Менеджеры With ... as",                      "video_link": "https://www.youtube.com/embed/Uy07s6sEYoM"},
+    29: {"title": "Уроки Python для начинающих | #16 - Модули. Работа с import и from",             "video_link": "https://www.youtube.com/embed/V3-3xjtMB48"},
+    30: {"title": "Уроки Python для начинающих | #17 - Основы ООП Python",                          "video_link": "https://www.youtube.com/embed/CWSgQcIF--8"},
+    31: {"title": "Уроки Python для начинающих | #18 - Наследование, инкапсуляция, полиморфизм",    "video_link": "https://www.youtube.com/embed/jA5ZTZNfnt0"},
+    32: {"title": "Уроки Python для начинающих | #19 - Конструкторы, переопределение методов",      "video_link": "https://www.youtube.com/embed/zIN94aYs5O0"},
+    33: {"title": "Уроки Python для начинающих | #20 - Декораторы",                                 "video_link": "https://www.youtube.com/embed/H1_GNTKPkSs"},
+    34: {"title": "Уроки Python для начинающих | #21 - Завершение",                                 "video_link": "https://www.youtube.com/embed/MSdssGlt5Yw"},
+    35: {"title": "Git - для новичков - #1 - основы",                                               "video_link": "https://www.youtube.com/embed/PEKN8NtBDQ0"},
+    36: {"title": "Git - для новичков - #2 - первые коммиты",                                       "video_link": "https://www.youtube.com/embed/9d5bJc8o7MA"},
+    37: {"title": "Git - для новичков - #3 - работаем с github",                                    "video_link": "https://www.youtube.com/embed/vFj2-bKGwkw"}
+}
+tags = {
+    "Python":       {"id": 0, "videos": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+                                         21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34]},
+    "Git":          {"id": 1, "videos": [35, 36, 37]},
+    "алгоритмы":    {"id": 2, "videos": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]},
+    "Хирьянов":     {"id": 3, "videos": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]},
+    "Дударь":       {"id": 4, "videos": [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
+                                         33, 34]},
+    "loftblog":     {"id": 5, "videos": [35, 36, 37]}
+}
+
+playlists = {
+    0: {'title': 'Тимофей Хирьянов. Алгоритмы на Python 3', 'videos': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+        'description': 'Курс лекций на тему "Алгоритмы на Python 3" преподавателя кафедры информатики МФТИ '
+                       'г.Долгопрудный Тимофея Хирьянова'},
+    1: {"title": "Георгий Дударь. Уроки Python для начинающих", "videos": [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
+                                                                           25, 26, 27, 28, 29, 30, 31, 32, 33, 34],
+        'description': 'Обзор основных особенностей языка Python'},
+    2: {'title': 'Git - для новичков', 'videos': [35, 36, 37],
+        'description': 'Обзор основных особенностей распределенной системы управления версиями Git'}
+}
