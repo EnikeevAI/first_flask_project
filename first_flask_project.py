@@ -1,10 +1,39 @@
-from flask import Flask, render_template, request    # сперва подключим модуль
+from flask import Flask, render_template, request  # сперва подключим модуль
 
 from stepik_media_data import videos, playlists, tags
 
-app = Flask(__name__)      # объявим экземпляр фласка
+app = Flask(__name__)  # объявим экземпляр фласка
 
 STEPIK_MEDIA_TITLE = 'Stepik Media'
+
+
+def get_search_video(search_word, playlists=playlists, tags=tags, videos=videos):
+    result_searching = {}
+
+    def search_video(search_word, search_place, video_places=videos, result_searching=result_searching,
+                     video_data=videos):
+        if search_word in search_place:
+            for video in video_places:
+                video_title = video_data[video]['title']
+                video_link = video_data[video]['video_link']
+                result_searching[video_title] = video_link
+
+    search_word = search_word.strip().lower()
+    for playlist in playlists:
+        playlist_title = playlists[playlist]['title']
+        playlist_videos = playlists[playlist]['videos']
+        search_video(search_word, playlist_title.lower(), playlist_videos)
+    for tag in tags:
+        tag_videos = tags[tag]['videos']
+        search_video(search_word, tag.lower(), tag_videos)
+    for video in videos:
+        title_search_video = videos[video]['title']
+        if search_word in title_search_video:
+            video_title = videos[video]['title']
+            video_link = videos[video]['video_link']
+            result_searching[video_title] = video_link
+    if result_searching == {}: result_searching = None
+    return result_searching
 
 
 @app.route('/')
@@ -14,22 +43,25 @@ def main():
     start_msg_to_user = 'Теги: '
     for tag in tags.keys():
         start_msg_to_user += tag + ', '
-    start_msg_to_user = start_msg_to_user[0:-2] # убираем запятую после последнего тега /
+    start_msg_to_user = start_msg_to_user[0:-2]  # убираем запятую после последнего тега /
     start_msg_to_user += '<br>Плейлисты: '
     for playlist in playlists:
-        start_msg_to_user += playlists[playlist]["title"] + " ({} видео)".format(len(playlists[playlist]["videos"])) + ', '
-    start_msg_to_user = start_msg_to_user[0:-2] # убираем запятую после последнего плейлиста /
-    #return start_msg_to_user
-    return render_template('index.html', index_title = index_title, index_page_title = index_page_title, tags=tags)
+        start_msg_to_user += playlists[playlist]["title"] + " ({} видео)".format(
+            len(playlists[playlist]["videos"])) + ', '
+    start_msg_to_user = start_msg_to_user[0:-2]  # убираем запятую после последнего плейлиста /
+    # return start_msg_to_user
+    return render_template('index.html', index_title=index_title, index_page_title=index_page_title, tags=tags)
+
 
 @app.route('/about')
 def about():
     about_title = STEPIK_MEDIA_TITLE
     about_page_title = '{} – О приложении.'.format(about_title)
     about_text = '{} – Это кинотеатр полезных видео, посвященных программированию'.format(about_title)
-    about_output = render_template("about.html", about_title = about_title, about_page_title = about_page_title,
-                             about_text = about_text)
+    about_output = render_template("about.html", about_title=about_title, about_page_title=about_page_title,
+                                   about_text=about_text)
     return about_output
+
 
 '''@app.route('/videos/<id>')
 def video(id):
@@ -65,28 +97,25 @@ def playlist(pl_id, v_id=1):
             if video_number == video_id:
                 video_on_page = videos[video]
             video_number += 1
-        playlist_output = render_template("playlist.html", playlist=playlist, video_on_page = video_on_page)
+        playlist_output = render_template("playlist.html", playlist=playlist, video_on_page=video_on_page)
         return playlist_output
     except ValueError:
         return page_not_found(404)
 
+
 @app.route('/search/', methods=['POST', 'get'])
 def search():
     search_title = STEPIK_MEDIA_TITLE
-    search_counter = 0
-    search_result = {}
-
+    search_result = None
+    search_message = None
     if request.method == 'POST':
-        search_name = request.form.get('search_bar').strip()
-        for video in videos:
-            #print(search_name, videos[video]['title'])
-            if search_name.lower() in videos[video]['title'].lower():
-                search_counter += 1
-                search_result[search_counter] = videos[video]['video_link']
-    print(search_result)
-    search_output = render_template("searchpage.html", search_title = search_title, tags=tags)
+        search_words = request.form.get('search_bar').strip()
+        search_result = get_search_video(search_words)
+        if search_result == None: search_message = "По Вашему запросу ничего не найдено"
+        else: search_message = "Результат поиска: {} видео".format(len(search_result))
+    search_output = render_template("searchpage.html", search_title=search_title, tags=tags,
+                                    search_result=search_result, search_message=search_message)
     return search_output
-
 
 
 @app.route('/tags/<tag>')
@@ -99,9 +128,10 @@ def thetag(tag):
     tag_msg += '<br>Приятного просмотра!'
     return tag_msg
 
+
 @app.errorhandler(404)
 def page_not_found(error):
-   return "Такой страницы нет"
+    return "Такой страницы нет"
+
 
 app.run()
-

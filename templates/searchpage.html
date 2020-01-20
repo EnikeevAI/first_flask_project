@@ -1,118 +1,126 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>CSSDesk</title>
     <style type="text/css">
       
       body { background-color: #2574b0; }
       
       
+
     </style>
-  </head>
-  <body>
-    <!DOCTYPE html>
+</head>
+<body>
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
-  <title>{{search_title}}</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          crossorigin="anonymous">
+    <title>{{search_title}}</title>
 </head>
 <body>
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container"
-  <a class="navbar-brand" href="#">{{search_title}}</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="/search">Поиск</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/about">О Сайте</a>
-      </li>          
-    </ul>
-  </div>
-  </div>
+    <div class="container"
+    <a class="navbar-brand" href="#">{{search_title}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/search">Поиск</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">О Сайте</a>
+            </li>
+        </ul>
+    </div>
+    </div>
 </nav>
 
 
 <div class="container">
 
     <div class="mt-4 mb-3"><a href="/" class="btn-outline-secondary">Назад</a></div>
-    <h2 class="р2 mb-3"><strong>Поиск: 6 результатов</strong></h2>
+    <h2 class="р2 mb-3"><strong>{{search_message}}</strong></h2>
     <form action="" method="post">
-    <div class="form-row">
-      <div class="col-7">
-        <input type="text" name="search_bar" class="form-control" placeholder="Введите слова">
-      </div>
+        <div class="form-row">
+            <div class="col-7">
+                <input type="text" name="search_bar" class="form-control" placeholder="Введите слова">
+            </div>
 
-      <div class="col">
-        <input type="submit" class="btn btn-primary" value="Найти">
-      </div>
+            <div class="col">
+                <input type="submit" class="btn btn-primary" value="Найти">
+            </div>
+        </div>
+    </form>
+
+    <p> Например: {% for tag in tags%} <a href="" class="mx-2">{{tag}}</a>{% endfor %} </p>
+
+    <div class="row mt-3">
+
+        <div class="col-4 mt-4">
+            <div class="card" style="width: 18rem;">
+                <img src="http://placehold.it/700x300" class="card-img-top fluid">
+                <div class="card-body">
+                    <a class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</a>
+                    <a href="#" class="btn btn-primary btn-sm mt-3">Открыть</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 mt-4">
+            <div class="card" style="width: 18rem;">
+                <img src="http://placehold.it/700x300" class="card-img-top fluid">
+                <div class="card-body">
+                    <a class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</a>
+                    <a href="#" class="btn btn-primary btn-sm mt-3">Открыть</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 mt-4">
+            <div class="card" style="width: 18rem;">
+                <img src="http://placehold.it/700x300" class="card-img-top fluid">
+                <div class="card-body">
+                    <a class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</a>
+                    <a href="#" class="btn btn-primary btn-sm mt-3">Открыть</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4 mt-4">
+            <div class="card" style="width: 18rem;">
+                <img src="http://placehold.it/700x300" class="card-img-top fluid">
+                <div class="card-body">
+                    <a class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</a>
+                    <a href="#" class="btn btn-primary btn-sm mt-3">Открыть</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4 mt-4">
+            <div class="card" style="width: 18rem;">
+                <img src="http://placehold.it/700x300" class="card-img-top fluid">
+                <div class="card-body">
+                    <a class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</a>
+                    <a href="#" class="btn btn-primary btn-sm mt-3">Открыть</a>
+                </div>
+            </div>
+        </div>
+
     </div>
-  </form>
-  
-  <p> Например: {% for tag in tags%} <a href="" class="mx-2">{{tag}}</a>{% endfor %} </p>
-             
-  <div class="row mt-3">
-  
-     <div class="col-4 mt-4">
-       <div class="card" style="width: 18rem;">
-          <img src="http://placehold.it/700x300" class="card-img-top fluid">
-          <div class="card-body">
-            <a class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</a>
-            <a href="#" class="btn btn-primary btn-sm mt-3">Открыть</a>
-          </div>
-      </div>
-     </div>
-     <div class="col-4 mt-4">
-       <div class="card" style="width: 18rem;">
-          <img src="http://placehold.it/700x300" class="card-img-top fluid">
-          <div class="card-body">
-            <a class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</a>
-            <a href="#" class="btn btn-primary btn-sm mt-3">Открыть</a>
-          </div>
-      </div>
-     </div>
-     <div class="col-4 mt-4">
-       <div class="card" style="width: 18rem;">
-          <img src="http://placehold.it/700x300" class="card-img-top fluid">
-          <div class="card-body">
-            <a class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</a>
-            <a href="#" class="btn btn-primary btn-sm mt-3">Открыть</a>
-          </div>
-      </div>
-     </div>
-     
-     <div class="col-4 mt-4">
-       <div class="card" style="width: 18rem;">
-          <img src="http://placehold.it/700x300" class="card-img-top fluid">
-          <div class="card-body">
-            <a class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</a>
-            <a href="#" class="btn btn-primary btn-sm mt-3">Открыть</a>
-          </div>
-      </div>
-     </div>
-     
-     <div class="col-4 mt-4">
-       <div class="card" style="width: 18rem;">
-          <img src="http://placehold.it/700x300" class="card-img-top fluid">
-          <div class="card-body">
-            <a class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</a>
-            <a href="#" class="btn btn-primary btn-sm mt-3">Открыть</a>
-          </div>
-      </div>
-     </div>     
-     
-  </div>
-     
+
 </div><!--/container-->
 
 </body>
 </html>
-  </body>
+</body>
 </html>
