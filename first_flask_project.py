@@ -1,11 +1,11 @@
-from flask import Flask, render_template, request  # сперва подключим модуль
+from flask import Flask, render_template, request, url_for, redirect  # сперва подключим модуль
 
 from stepik_media_data import videos, playlists, tags
 
 app = Flask(__name__)  # объявим экземпляр фласка
 
-STEPIK_MEDIA_TITLE = 'Stepik Media'
 
+STEPIK_MEDIA_TITLE = "Stepik Media"
 
 def get_search_video(search_word, playlists=playlists, tags=tags, videos=videos):
     result_searching = {}
@@ -36,47 +36,32 @@ def get_search_video(search_word, playlists=playlists, tags=tags, videos=videos)
     if result_searching == {} or search_word == "": result_searching = None
     return result_searching
 
-@app.route('/')
+
+@app.route('/', methods=['POST', 'GET'])
 def main():
-    index_title = STEPIK_MEDIA_TITLE
     index_page_title = 'Портал видео, посвященных программированию'
-    start_msg_to_user = 'Теги: '
-    for tag in tags.keys():
-        start_msg_to_user += tag + ', '
-    start_msg_to_user = start_msg_to_user[0:-2]  # убираем запятую после последнего тега /
-    start_msg_to_user += '<br>Плейлисты: '
+    index_page_text = 'Материалы для тех, кто учится программировать'
+    playlist_video_link = {}
+    if request.method == 'POST':
+        search_word = request.form.get('index_search_bar').strip()
+        if search_word == None or search_word == "": pass
+        else:
+            return redirect('/search/{}'.format(search_word))
     for playlist in playlists:
-        start_msg_to_user += playlists[playlist]["title"] + " ({} видео)".format(
-            len(playlists[playlist]["videos"])) + ', '
-    start_msg_to_user = start_msg_to_user[0:-2]  # убираем запятую после последнего плейлиста /
-    # return start_msg_to_user
-    return render_template('index.html', index_title=index_title, index_page_title=index_page_title, tags=tags)
+        video_id = playlists[playlist]['videos'][0]
+        playlist_video_link[playlist] = videos[video_id]['video_link']
+
+
+    return render_template('index.html', page_title=index_page_title, page_text=index_page_text, tags=tags,
+                           playlists=playlists, playlist_video_link=playlist_video_link)
 
 
 @app.route('/about')
 def about():
-    about_title = STEPIK_MEDIA_TITLE
-    about_page_title = '{} – О приложении.'.format(about_title)
-    about_text = '{} – Это кинотеатр полезных видео, посвященных программированию'.format(about_title)
-    about_output = render_template("about.html", about_title=about_title, about_page_title=about_page_title,
-                                   about_text=about_text)
+    about_page_title = '{} – О приложении'.format(STEPIK_MEDIA_TITLE)
+    about_text = '{} – Это кинотеатр полезных видео, посвященных программированию'.format(STEPIK_MEDIA_TITLE)
+    about_output = render_template("about.html",  page_title=about_page_title, page_text=about_text)
     return about_output
-
-
-'''@app.route('/videos/<id>')
-def video(id):
-    video_id = int(id) - 1
-    if video_id in videos:
-        video_msg = 'Название: ' + videos[video_id]['title'] + '<br>'
-    else:
-        video_msg = 'Такого видео у нас нет, всего хорошего!<br>'
-    video_msg += 'Теги: '
-    for tag in tags.keys():
-        if video_id in tags[tag]["videos"]:
-            video_msg += tag + ', '
-    video_msg = video_msg[0:-2]
-    video_msg += '<br>Видео: ' + videos[video_id]["video_link"]
-    return video_msg'''
 
 
 @app.route('/playlists/<pl_id>/<v_id>/')
@@ -102,33 +87,32 @@ def playlist(pl_id, v_id=1):
     except ValueError:
         return page_not_found(404)
 
+
 @app.route('/search/<search_word>', methods=['POST', 'GET'])
 @app.route('/search/', methods=['POST', 'GET'])
-def search(search_word = None):
-    search_title = STEPIK_MEDIA_TITLE
+def search(search_word=None):
     search_result = None
-    search_message = None
+    search_message = "Введите слова для поиска"
     if request.method == 'POST':
         search_word = request.form.get('search_bar').strip()
-        search_result = get_search_video(search_word)
-    if search_word != None:
-        search_result = get_search_video(search_word)
-    if search_result == None:
-        search_message = 'По Вашему запросу: "{}" ничего не найдено'.format(search_word)
+    if search_word == None or search_word == "": pass
     else:
-        for playlist in playlists:
-            for video in search_result:
-                if video in playlists[playlist]['videos']:
-                    print("video", video, "playlists[playlist]['videos']", playlists[playlist]['videos'])
-                    video_id = playlists[playlist]['videos'].index(video) + 1
-                    playlist_id = playlist + 1
-                    video_route = '/playlists/{}/{}'.format(playlist_id, video_id)
-                    search_result[video].append(video_route)
-        search_message = 'Результат поиска по запросу "{}": {} видео'.format(search_word, len(search_result))
-    print(search_result)
-    search_output = render_template("searchpage.html", search_title=search_title, tags=tags,
-                                    search_result=search_result, search_message=search_message)
+        search_result = get_search_video(search_word)
+        if search_result == None: search_message = 'По Вашему запросу ничего не найдено'
+        else:
+            for playlist in playlists:
+                for video in search_result:
+                    if video in playlists[playlist]['videos']:
+                        video_id = playlists[playlist]['videos'].index(video) + 1
+                        playlist_id = playlist + 1
+                        video_route = '/playlists/{}/{}'.format(playlist_id, video_id)
+                        search_result[video].append(video_route)
+            search_message = 'Результат поиска по запросу "{}": {} видео'.format(search_word, len(search_result))
+
+    search_output = render_template("searchpage.html", tags=tags, search_result=search_result,
+                                    search_message=search_message)
     return search_output
+
 
 @app.errorhandler(404)
 def page_not_found(error):
