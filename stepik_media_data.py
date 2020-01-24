@@ -36,7 +36,25 @@ videos = {
     34: {"title": "Уроки Python для начинающих | #21 - Завершение",                                 "video_link": "https://www.youtube.com/embed/MSdssGlt5Yw"},
     35: {"title": "Git - для новичков - #1 - основы",                                               "video_link": "https://www.youtube.com/embed/PEKN8NtBDQ0"},
     36: {"title": "Git - для новичков - #2 - первые коммиты",                                       "video_link": "https://www.youtube.com/embed/9d5bJc8o7MA"},
-    37: {"title": "Git - для новичков - #3 - работаем с github",                                    "video_link": "https://www.youtube.com/embed/vFj2-bKGwkw"}
+    37: {"title": "Git - для новичков - #3 - работаем с github",                                    "video_link": "https://www.youtube.com/embed/vFj2-bKGwkw"},
+    38: {"title": "Lambda функция Python. Lambda выражение. Анонимная функция Lambda",              "video_link": "https://www.youtube.com/embed/8fzrm1tX5lI"},
+    39: {"title": "Генераторы списков Python | List comprehension",                                 "video_link": "https://www.youtube.com/embed/_zBTBr6XdZo"},
+    40: {"title": "Генераторы списков Python 2 | Вложенные генераторы списков",                     "video_link": "https://www.youtube.com/embed/_RA35zG-0gA"},
+    41: {"title": "Генераторы и итераторы. Выражения -генераторы в Python",                         "video_link": "https://www.youtube.com/embed/vn6bV6BYm7w"},
+    42: {"title": "Функция генератор. Создание генератора при помощи yield Python",                 "video_link": "https://www.youtube.com/embed/8cMMO8fks-k"},
+    43: {"title": "Функция map Python. Что делает функция map в Python",                            "video_link": "https://www.youtube.com/embed/2ghKShXWuSs"},
+    44: {"title": "Функция filter python. Что делает функция filter в Python",                      "video_link": "https://www.youtube.com/embed/q0xKow-E4Ws"},
+    45: {"title": "Функция zip python. Что делает функция zip в Python",                            "video_link": "https://www.youtube.com/embed/1sNJoGQQfiM"},
+    46: {"title": "Сортировка коллекций в Python. Метод sort и функция sorted",                     "video_link": "https://www.youtube.com/embed/Qi5HEyla4_U"},
+    47: {"title": "Сортировка по ключу Python. Аргумент key | Сортировка Python",                   "video_link": "https://www.youtube.com/embed/I4u5dth91G0"},
+    48: {"title": "Метод split и метод join Python",                                                "video_link": "https://www.youtube.com/embed/M5DB3Yun8gU"},
+    49: {"title": "Установка модулей в Python || Установка пакета Python",                          "video_link": "https://www.youtube.com/embed/BXaBQ0PcNTk"},
+    50: {"title": "Функции all и any. Программирование Python",                                     "video_link": "https://www.youtube.com/embed/TdFTY_xgHvw"},
+    51: {"title": "Работа с файлами в Python. Чтение и запись данных",                              "video_link": "https://www.youtube.com/embed/oRr_bEXJbV0"},
+    52: {"title": "Функции trunc, floor, ceil. Округление вверх и вниз в python",                   "video_link": "https://www.youtube.com/embed/f5WoQ7sGpp0"},
+    53: {"title": "Форматирование строк Python. Метод format строк",                                "video_link": "https://www.youtube.com/embed/Yab7gE8K1Ko"},
+    54: {"title": "F-строка. F-string. Программирование на Python",                                 "video_link": "https://www.youtube.com/embed/QlkQNWQUCLc"},
+
 }
 tags = {
     "Python":       {"id": 0, "videos": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -57,5 +75,8 @@ playlists = {
                                                                            25, 26, 27, 28, 29, 30, 31, 32, 33, 34],
         'description': 'Обзор основных особенностей языка Python'},
     2: {'title': 'Git - для новичков', 'videos': [35, 36, 37],
-        'description': 'Обзор основных особенностей распределенной системы управления версиями Git'}
+        'description': 'Обзор основных особенностей распределенной системы управления версиями Git'},
+    3: {'title': 'Егоров Артем. Язык программирования Python', 'videos': [38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48,
+                                                                          49, 50, 51, 52, 53, 54],
+        'description': 'Обзор некоторых полезных функций языка Python'}
 }
