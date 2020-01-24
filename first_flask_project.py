@@ -10,13 +10,14 @@ STEPIK_MEDIA_TITLE = 'Stepik Media'
 def get_search_video(search_word, playlists=playlists, tags=tags, videos=videos):
     result_searching = {}
 
-    def search_video(search_word, search_place, video_places=videos, result_searching=result_searching,
+    def search_video(search_word, search_place, video_places, result_searching=result_searching,
                      video_data=videos):
         if search_word in search_place:
             for video in video_places:
+                video_id = video
                 video_title = video_data[video]['title']
                 video_link = video_data[video]['video_link']
-                result_searching[video_title] = video_link
+                result_searching[video_id] = [video_title, video_link]
 
     search_word = search_word.strip().lower()
     for playlist in playlists:
@@ -32,9 +33,8 @@ def get_search_video(search_word, playlists=playlists, tags=tags, videos=videos)
             video_title = videos[video]['title']
             video_link = videos[video]['video_link']
             result_searching[video_title] = video_link
-    if result_searching == {}: result_searching = None
+    if result_searching == {} or search_word == "": result_searching = None
     return result_searching
-
 
 @app.route('/')
 def main():
@@ -102,32 +102,33 @@ def playlist(pl_id, v_id=1):
     except ValueError:
         return page_not_found(404)
 
-
-@app.route('/search/', methods=['POST', 'get'])
-def search():
+@app.route('/search/<search_word>', methods=['POST', 'GET'])
+@app.route('/search/', methods=['POST', 'GET'])
+def search(search_word = None):
     search_title = STEPIK_MEDIA_TITLE
     search_result = None
     search_message = None
     if request.method == 'POST':
-        search_words = request.form.get('search_bar').strip()
-        search_result = get_search_video(search_words)
-        if search_result == None: search_message = "По Вашему запросу ничего не найдено"
-        else: search_message = "Результат поиска: {} видео".format(len(search_result))
+        search_word = request.form.get('search_bar').strip()
+        search_result = get_search_video(search_word)
+    if search_word != None:
+        search_result = get_search_video(search_word)
+    if search_result == None:
+        search_message = 'По Вашему запросу: "{}" ничего не найдено'.format(search_word)
+    else:
+        for playlist in playlists:
+            for video in search_result:
+                if video in playlists[playlist]['videos']:
+                    print("video", video, "playlists[playlist]['videos']", playlists[playlist]['videos'])
+                    video_id = playlists[playlist]['videos'].index(video) + 1
+                    playlist_id = playlist + 1
+                    video_route = '/playlists/{}/{}'.format(playlist_id, video_id)
+                    search_result[video].append(video_route)
+        search_message = 'Результат поиска по запросу "{}": {} видео'.format(search_word, len(search_result))
+    print(search_result)
     search_output = render_template("searchpage.html", search_title=search_title, tags=tags,
                                     search_result=search_result, search_message=search_message)
     return search_output
-
-
-@app.route('/tags/<tag>')
-def thetag(tag):
-    tag_msg = 'У нас есть {} видео по тегу: {}<br><br>'.format(len(tags[tag]['videos']), tag)
-    tag_cnt = 1
-    for video in tags[tag]['videos']:
-        tag_msg += '{} . '.format(tag_cnt) + videos[video]['title'] + '<br>' + videos[video]['video_link'] + '<br><br>'
-        tag_cnt += 1
-    tag_msg += '<br>Приятного просмотра!'
-    return tag_msg
-
 
 @app.errorhandler(404)
 def page_not_found(error):
