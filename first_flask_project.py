@@ -129,5 +129,5 @@ def search(search_word=None):
 def page_not_found(error):
     return "Такой страницы нет"
 
-
-app.run()
+if __name__ == '__main__':
+    app.run()

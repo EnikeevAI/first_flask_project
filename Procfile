@@ -1,0 +1,1 @@
+web: gunicorn first_flask_project:app
