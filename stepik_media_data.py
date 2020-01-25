@@ -50,21 +50,17 @@ videos = {
     48: {"title": "Метод split и метод join Python",                                                "video_link": "https://www.youtube.com/embed/M5DB3Yun8gU"},
     49: {"title": "Установка модулей в Python || Установка пакета Python",                          "video_link": "https://www.youtube.com/embed/BXaBQ0PcNTk"},
     50: {"title": "Функции all и any. Программирование Python",                                     "video_link": "https://www.youtube.com/embed/TdFTY_xgHvw"},
-    51: {"title": "Работа с файлами в Python. Чтение и запись данных",                              "video_link": "https://www.youtube.com/embed/oRr_bEXJbV0"},
-    52: {"title": "Функции trunc, floor, ceil. Округление вверх и вниз в python",                   "video_link": "https://www.youtube.com/embed/f5WoQ7sGpp0"},
-    53: {"title": "Форматирование строк Python. Метод format строк",                                "video_link": "https://www.youtube.com/embed/Yab7gE8K1Ko"},
-    54: {"title": "F-строка. F-string. Программирование на Python",                                 "video_link": "https://www.youtube.com/embed/QlkQNWQUCLc"},
 
 }
 tags = {
     "Python":       {"id": 0, "videos": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-                                         21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34]},
-    "Git":          {"id": 1, "videos": [35, 36, 37]},
+                                         21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 38, 39, 40, 41,
+                                         42, 43, 44, 45, 46, 47, 48, 49, 50]},
     "алгоритмы":    {"id": 2, "videos": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]},
     "Хирьянов":     {"id": 3, "videos": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]},
     "Дударь":       {"id": 4, "videos": [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
                                          33, 34]},
-    "loftblog":     {"id": 5, "videos": [35, 36, 37]}
+    "Git":          {"id": 5, "videos": [35, 36, 37]}
 }
 
 playlists = {
@@ -77,6 +73,6 @@ playlists = {
     2: {'title': 'Git - для новичков', 'videos': [35, 36, 37],
         'description': 'Обзор основных особенностей распределенной системы управления версиями Git'},
     3: {'title': 'Егоров Артем. Язык программирования Python', 'videos': [38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48,
-                                                                          49, 50, 51, 52, 53, 54],
+                                                                          49, 50],
         'description': 'Обзор некоторых полезных функций языка Python'}
 }

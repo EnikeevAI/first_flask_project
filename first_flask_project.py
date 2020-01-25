@@ -10,7 +10,7 @@ STEPIK_MEDIA_TITLE = "Stepik Media"
 def get_search_video(search_word, playlists=playlists, tags=tags, videos=videos):
     result_searching = {}
 
-    def search_video(search_word, search_place, video_places, result_searching=result_searching,
+    def search_video(search_word, search_place, video_places, result_searching,
                      video_data=videos):
         if search_word in search_place:
             for video in video_places:
@@ -23,16 +23,21 @@ def get_search_video(search_word, playlists=playlists, tags=tags, videos=videos)
     for playlist in playlists:
         playlist_title = playlists[playlist]['title']
         playlist_videos = playlists[playlist]['videos']
-        search_video(search_word, playlist_title.lower(), playlist_videos)
+        search_video(search_word, playlist_title.lower(), playlist_videos, result_searching)
+
     for tag in tags:
         tag_videos = tags[tag]['videos']
-        search_video(search_word, tag.lower(), tag_videos)
+        search_video(search_word, tag.lower(), tag_videos, result_searching)
+
     for video in videos:
         title_search_video = videos[video]['title']
         if search_word in title_search_video:
+            video_id = video
             video_title = videos[video]['title']
             video_link = videos[video]['video_link']
-            result_searching[video_title] = video_link
+            if video_id not in result_searching:
+                result_searching[video_id] = [video_title, video_link]
+        else: continue
     if result_searching == {} or search_word == "": result_searching = None
     return result_searching
 
@@ -64,13 +69,14 @@ def about():
     return about_output
 
 
-@app.route('/playlists/<pl_id>/<v_id>/')
-@app.route('/playlists/<pl_id>/')
-def playlist(pl_id, v_id=1):
+@app.route('/playlists/<pl_id>/<v_id>/', methods=['POST', 'GET'])
+@app.route('/playlists/<pl_id>/', methods=['POST', 'GET'])
+def playlist(pl_id, v_id='1'):
     try:
         playlist_id = int(pl_id) - 1
         video_id = int(v_id)
         video_number = 1
+        max_v_id_in_playlist = len(playlists[playlist_id]['videos'])
         playlist = {'title': playlists[playlist_id]['title'], 'videos': [],
                     'description': playlists[playlist_id]['description']}
         video_on_page = {}
@@ -82,6 +88,11 @@ def playlist(pl_id, v_id=1):
             if video_number == video_id:
                 video_on_page = videos[video]
             video_number += 1
+        if request.method == 'POST':
+            if int(v_id) < max_v_id_in_playlist:
+                next_video = int(v_id)+1
+            else: next_video = v_id
+            return redirect('/playlists/{}/{}'.format(pl_id, str(next_video)))
         playlist_output = render_template("playlist.html", playlist=playlist, video_on_page=video_on_page)
         return playlist_output
     except ValueError:
